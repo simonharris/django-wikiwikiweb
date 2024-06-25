@@ -1,0 +1,66 @@
+{% extends "wiki/__base.html" %}
+
+{% load wiki_extras %}
+
+{% block title %}Wiki Home{% endblock %}
+
+{% block mainheading %}
+Wiki Home
+{% endblock %}
+
+{% block content %}
+
+<div class="row mt-4">
+
+<div class="col" text-nowrap>
+<h4>Main Pages</h4>
+
+<ul>
+    <li><a href="{% url 'wiki:page_view' 'ThreeHundredSongsHome' %}">ThreeHundredSongsHome</a></li>
+    <li><a href="{% url 'wiki:page_view' 'WikiDumpsterHome' %}">WikiDumpsterHome</a></li>
+</ul>
+<!-- /div>
+
+<div class="col text-nowrap" -->
+<h4>Wiki Spaces</h4>
+
+<ul>
+{% for space in all_spaces %}
+    <li><a href="{% url 'wiki:space' space.name %}">{{ space.name|make_title }} </a></li>
+{% endfor %}
+</ul>
+</div>
+
+<!-- /div>
+
+<div class="row mt-2" -->
+
+<div class="col">
+<h4>Latest Updates</h4>
+
+<ul>
+{% for page in pages_updated %}
+    <li><a href="{%  url 'wiki:page_view' page.name %}">{{ page.name }}</a></li>
+{% endfor %}
+</ul>
+
+</div>
+
+<div class="col">
+<h4>Newest Pages</h4>
+
+<ul>
+{% for page in pages_created %}
+    <li><a href="{%  url 'wiki:page_view' page.name %}">{{ page.name }}</a></li>
+{% endfor %}
+</ul>
+</div>
+
+</div>
+
+{% endblock %}
+
+
+{% block footer %}
+<a href="/">Site Home</a>
+{% endblock %}
