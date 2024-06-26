@@ -16,7 +16,11 @@ Wiki Home
 <h4>Main Pages</h4>
 
 <ul>
-    <li>Coming soon...</li>
+{% for space in all_spaces %}
+{% if space.homepage %}
+    <li><a href="{% url 'wiki:page_view' space.homepage.name %}">{{ space.homepage.name }}</a></li>
+{% endif %}
+{% endfor %}
 </ul>
 <!-- /div>
 

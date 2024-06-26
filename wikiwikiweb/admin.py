@@ -24,7 +24,7 @@ class WikiPageAdmin(admin.ModelAdmin):
 @admin.register(WikiSpace)
 class WikiSpaceAdmin(admin.ModelAdmin):
 
-    list_display = ['name'] #, 'homepage']
+    list_display = ['name', 'homepage']
 
     fields = [
             'name',

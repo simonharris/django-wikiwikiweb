@@ -7,6 +7,8 @@ class WikiSpace(models.Model):
     spaceid = models.AutoField(primary_key=True)
     name = models.SlugField(default='', null=False)
     description = models.TextField(blank=True, null=True)
+    homepage = models.ForeignKey('WikiPage', blank=True, null=True, on_delete=models.PROTECT)
+
     history = HistoricalRecords()
 
     class Meta:
