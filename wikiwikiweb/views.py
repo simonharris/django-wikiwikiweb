@@ -22,7 +22,7 @@ class HomeView(generic.TemplateView):
         return context
 
     def get(self, request, *args, **kwargs):
-        # Clear selected space
+        # Clear selected space   (TODO: decide whether this is actually helpful)
         request.session['sess_space_key'] = None
         return super().get(request, *args, **kwargs)
 
@@ -60,6 +60,7 @@ class PageArchiveView(generic.DetailView):
     template_name = 'wiki/wiki_page_archive.html'
 
 
+@method_decorator(login_required, name="dispatch")
 class PageCreateView(generic.edit.CreateView):
     model = WikiPage
     context_object_name = 'mypage'
@@ -67,9 +68,6 @@ class PageCreateView(generic.edit.CreateView):
 
     form_class = PageCreateForm
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
     def setup(self, request, *args, **kwargs):
         """Initialize attributes shared by all view methods"""
@@ -110,16 +108,13 @@ class PageCreateView(generic.edit.CreateView):
         return reverse('wiki:page_view', kwargs={'pk': new_page_name}) + '?win=yes'
 
 
+@method_decorator(login_required, name="dispatch")
 class PageEditView(generic.edit.UpdateView):
     model = WikiPage
     context_object_name = 'mypage'
     template_name = 'wiki/wiki_page_edit.html'
 
     form_class = PageEditForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
     # TODO: set Space into session?
 
