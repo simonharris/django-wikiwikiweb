@@ -1,27 +1,25 @@
-from django.forms import HiddenInput, ModelForm, Textarea
+from django.forms import ModelForm
 
 from .models import WikiPage
 
 
 class PageCreateForm(ModelForm):
 
-    # TODO: "creating blah in lalala"
-
     class Meta:
         model = WikiPage
         fields = ['name', 'content', 'edit_reason']
-        widgets = {
-             'content': Textarea(attrs={'label': 'Page Content:'}),
-             #'space': HiddenInput(),
-        }
 
 
 class PageEditForm(ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        """There MUST be a simpler way to override a simple input value"""
+
+        initial = kwargs.get('initial', {})
+        initial['edit_reason'] = ''
+        kwargs['initial'] = initial
+        super().__init__(*args, **kwargs)
+
     class Meta:
         model = WikiPage
         fields = ['content', 'edit_reason']
-        widgets = {
-             'content': Textarea(attrs={'label': 'Page Content:'}),
-
-        }
