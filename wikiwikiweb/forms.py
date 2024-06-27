@@ -20,9 +20,8 @@ class PageEditForm(ModelForm):
 
     class Meta:
         model = WikiPage
-        fields = ['content', 'space', 'edit_reason']
+        fields = ['content', 'edit_reason']
         widgets = {
              'content': Textarea(attrs={'label': 'Page Content:'}),
-             # # TODO: do I even need this now? It won't change
-             'space': HiddenInput(),
+
         }
