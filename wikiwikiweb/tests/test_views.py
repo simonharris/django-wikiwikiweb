@@ -51,7 +51,7 @@ class TestBasicCalls(TestCase):
     def test_require_login_for_create_not_logged_in(self):
         response = self.client.get('/wiki/ThisNoExist')
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/accounts/login/?next=%2Fwiki%2FThisNoExist')
+        self.assertRedirects(response, '/accounts/login/?next=/wiki/ThisNoExist')
 
     # Edit page
 
@@ -63,31 +63,7 @@ class TestBasicCalls(TestCase):
 
     # WikiSpace pages ---------------------------------------------------------
 
-    """
-    DOesnt work as session middleware never called
-    def test_session_is_populated_with_space_key(self):
-
-        session = self.client.session
-
-        response = self.client.get('/wiki/space:ThreeHundredSongs')
-        self.assertEqual(response.status_code, 200)
-
-
-        print(vars(session))
-
-        self.assertTemplateUsed(response, 'wiki/space.html')
-
-        session['foo'] = 'omglol'
-        session.save()
-
-        print(vars(session))
-
-        #self.assertEqual(session.get(self._sess_key_space), 'ThreeHundredSongs2')
-        self.assertEqual(session.get('foo'), 'omglol')
-
-        #session["somekey"] = "test"
-        #session.save()
-    """
+    # TODO
 
     # Search page -------------------------------------------------------------
 
@@ -108,7 +84,6 @@ class TestBasicCalls(TestCase):
         session = self.client.session
         self.assertFalse(session.get(self._sess_key_space))
 
-        response = self.client.get('/wiki/search?q=avril')
+        response = self.client.get('/wiki/search?q=Avril+Lavigne')
         self.assertEqual(response.status_code, 302)
-        ### TODO: self.assertRedirects(response, '/wiki/space/select?next=%2Fwiki%2Fsearch') # NB entire query string
-
+        self.assertRedirects(response, '/wiki/space/select?next=/wiki/search?q=Avril+Lavigne')
