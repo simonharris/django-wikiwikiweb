@@ -9,7 +9,21 @@ from django.views import generic
 from .forms import *
 from .models import *
 
+
 ITEMS_PER_PAGE = 10
+
+
+def wikispace_required(view_func):
+
+    def wrapper(request, *args, **kwargs):
+        if not request.session.get('sess_space_key'):
+            intermediate = (reverse('wiki:space_select')
+                            + '?next='
+                            + request.get_full_path())
+            return redirect(intermediate)
+        return view_func(request, *args, **kwargs)
+
+    return wrapper
 
 
 class HomeView(generic.TemplateView):
@@ -59,15 +73,14 @@ class PageArchiveView(generic.DetailView):
     context_object_name = 'mypage'
     template_name = 'wiki/wiki_page_archive.html'
 
-
-@method_decorator(login_required, name="dispatch")
+#TODO: require space in session. Will be rare, but has implications for this method (see below)
+@method_decorator(login_required, name='dispatch')
 class PageCreateView(generic.edit.CreateView):
     model = WikiPage
     context_object_name = 'mypage'
     template_name = 'wiki/wiki_page_create.html'
 
     form_class = PageCreateForm
-
 
     def setup(self, request, *args, **kwargs):
         """Initialize attributes shared by all view methods"""
@@ -108,7 +121,7 @@ class PageCreateView(generic.edit.CreateView):
         return reverse('wiki:page_view', kwargs={'pk': new_page_name}) + '?win=yes'
 
 
-@method_decorator(login_required, name="dispatch")
+@method_decorator(login_required, name='dispatch')
 class PageEditView(generic.edit.UpdateView):
     model = WikiPage
     context_object_name = 'mypage'
@@ -116,34 +129,18 @@ class PageEditView(generic.edit.UpdateView):
 
     form_class = PageEditForm
 
-    # TODO: set Space into session?
-
     def get_success_url(self):
         new_page_name = self.object.name
         return reverse('wiki:page_view', kwargs={'pk': new_page_name}) + '?win=yes'
 
 
+@method_decorator(wikispace_required, name='dispatch')
 class SearchView(generic.ListView):
 
     template_name = 'wiki/search.html'
     model = WikiPage
     context_object_name = 'pages_list'
     #paginate_by = ITEMS_PER_PAGE
-
-
-    def get(self, request):
-        """Enforce session key for Space is set"""
-
-        # TODO: see if can move to annotation
-        search_space = request.session.get('sess_space_key')
-
-        if search_space == None:
-            # This doesn't work yet, need full 'next' URL
-            to_url = reverse('wiki:space_select') + '?' + request.GET.urlencode()
-            return redirect(to_url)
-
-        return super().get(self, request)
-
 
     def get_queryset(self): #
         # TODO: needs checking for empty
@@ -154,7 +151,6 @@ class SearchView(generic.ListView):
             Q(space__name=search_space) &
             (Q(name__icontains=search_string) | Q(content__icontains=search_string)),
         )
-
 
     def get_context_data(self, **kwargs):
         context = super(SearchView, self).get_context_data(**kwargs)
@@ -168,6 +164,7 @@ class SearchView(generic.ListView):
 
 
 class SpaceView(generic.DetailView):
+
     model = WikiSpace
     slug_field = 'name'
     context_object_name = 'myspace'
@@ -178,17 +175,33 @@ class SpaceView(generic.DetailView):
         request.session['sess_space_key'] = kwargs['slug']
         return super().get(request, *args, **kwargs)
 
-# TODO
-class SpaceSelectView(generic.TemplateView):
+
+class SpaceSelectView(generic.edit.FormView):
+
+    form_class = SpaceSelectForm
     template_name = 'wiki/space_select.html'
 
+    def form_valid(self, form):
 
+        chosen_id = self.request.POST.get('space_choice')
+        chosen_space = WikiSpace.objects.get(pk=chosen_id)
+        self.request.session['sess_space_key'] = chosen_space.name
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return self.request.POST.get('next')
+
+    def get_context_data(self, **kwargs):
+        context = super(SpaceSelectView, self).get_context_data(**kwargs)
+        context['next'] = self.request.GET.get('next')
+        return context
+
+
+@method_decorator(login_required, name='dispatch')
 class MyView(generic.TemplateView):
-    template_name = 'wiki/mywiki.html'
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+    template_name = 'wiki/mywiki.html'
 
 
 class UserView(generic.TemplateView):
