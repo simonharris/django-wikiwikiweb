@@ -75,7 +75,7 @@ class TestBasicCalls(TestCase):
         newpageurl = '/wiki/' + newpagename
 
         response = self.client.post(newpageurl, data=formdata)
-        self.assertRedirects(response, newpageurl + '?win=yes') # fragile, but works for now
+        self.assertRedirects(response, newpageurl + '?success=created')
 
         newpage = WikiPage.objects.get(pk=newpagename)
 
@@ -107,7 +107,7 @@ class TestBasicCalls(TestCase):
         editpageurl = viewpageurl + '/edit'
 
         response = self.client.post(editpageurl, data=formdata)
-        self.assertRedirects(response, viewpageurl + '?win=yes') # fragile, but works for now
+        self.assertRedirects(response, viewpageurl + '?success=updated')
 
         newpage = WikiPage.objects.get(pk=editpagename)
 

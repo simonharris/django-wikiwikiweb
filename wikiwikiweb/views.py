@@ -55,9 +55,9 @@ class PageView(generic.DetailView):
             # TODO: some sort of constant for these key strings
             request.session['sess_space_key'] = self.object.space.name
 
-            # Display edit success dialogue if that's what just happened
-            if request.GET.get('win') == 'yes':
-                context['success_msg'] = 'wikipage successfully updated'
+            # Display success dialogue if that's what just happened
+            status_key = request.GET.get('success')
+            context['status_key'] = status_key
 
             return self.render_to_response(context)
         except Http404:
@@ -122,7 +122,7 @@ class PageCreateView(generic.edit.CreateView):
 
     def get_success_url(self):
         new_page_name = self.object.name
-        return reverse('wiki:page_view', kwargs={'pk': new_page_name}) + '?win=yes'
+        return reverse('wiki:page_view', kwargs={'pk': new_page_name}) + '?success=created'
 
 
 @method_decorator(login_required, name='dispatch')
@@ -140,7 +140,7 @@ class PageEditView(generic.edit.UpdateView):
 
     def get_success_url(self):
         new_page_name = self.object.name
-        return reverse('wiki:page_view', kwargs={'pk': new_page_name}) + '?win=yes'
+        return reverse('wiki:page_view', kwargs={'pk': new_page_name}) + '?success=updated'
 
 
 @method_decorator(wikispace_required, name='dispatch')
