@@ -73,7 +73,8 @@ class PageArchiveView(generic.DetailView):
     context_object_name = 'mypage'
     template_name = 'wiki/wiki_page_archive.html'
 
-#TODO: require space in session. Will be rare, but has implications for this method (see below)
+
+@method_decorator(wikispace_required, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 class PageCreateView(generic.edit.CreateView):
     model = WikiPage
@@ -82,6 +83,7 @@ class PageCreateView(generic.edit.CreateView):
 
     form_class = PageCreateForm
 
+    # TODO: this seems superfluous. Used in one place?
     def setup(self, request, *args, **kwargs):
         """Initialize attributes shared by all view methods"""
 
@@ -95,6 +97,8 @@ class PageCreateView(generic.edit.CreateView):
         return super(PageCreateView, self).setup(request, *args, **kwargs)
 
 
+    # TODO: is this even necessary? Should always be in the URL, not the form
+    # - and you don't want them to change it, bypassing existence checks. See #18
     def get(self, request, *args, **kwargs):
 
         defaults = {
