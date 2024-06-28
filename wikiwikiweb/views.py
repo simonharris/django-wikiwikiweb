@@ -73,9 +73,8 @@ class PageArchiveView(generic.DetailView):
     context_object_name = 'mypage'
     template_name = 'wiki/wiki_page_archive.html'
 
-
-@method_decorator(wikispace_required, name='dispatch')
 @method_decorator(login_required, name='dispatch')
+@method_decorator(wikispace_required, name='dispatch')
 class PageCreateView(generic.edit.CreateView):
     model = WikiPage
     context_object_name = 'mypage'
