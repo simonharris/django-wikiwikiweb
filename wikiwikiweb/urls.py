@@ -10,7 +10,6 @@ urlpatterns = [
     path('space/select', views.SpaceSelectView.as_view(), name='space_select'),
     path('space:<slug:slug>', views.SpaceView.as_view(), name='space'),
     path('user:<str:username>', views.UserView.as_view(), name='user'),
-    path('<str:pk>/create', views.PageCreateView.as_view(), name='page_create'),
     path('<str:pk>/edit', views.PageEditView.as_view(), name='page_edit'),
     path('search', views.SearchView.as_view(), name='search'),
     path('mywiki', views.MyView.as_view(), name='mywiki'),
