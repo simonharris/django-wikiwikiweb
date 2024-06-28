@@ -1,4 +1,48 @@
 [
+   {
+      "model":"auth.user",
+      "pk":3,
+      "fields":{
+         "password":"pbkdf2_sha256$720000$8DG8cIU9BHOHqJbUpap5a8$q2hpmkWyz4RYuAo7zZeGcfJ5Aj3F9ayRso/7xicRQJk=",
+         "last_login":null,
+         "is_superuser":false,
+         "username":"testuser",
+         "first_name":"",
+         "last_name":"",
+         "email":"",
+         "is_staff":false,
+         "is_active":true,
+         "date_joined":"2024-06-24T16:43:55.754Z",
+         "groups":[
+
+         ],
+         "user_permissions":[
+
+         ]
+      }
+   },
+   {
+      "model":"auth.user",
+      "pk":4,
+      "fields":{
+         "password":"pbkdf2_sha256$720000$8DG8cIU9BHOHqJbUpap5a8$q2hpmkWyz4RYuAo7zZeGcfJ5Aj3F9ayRso/7xicRQJk=",
+         "last_login":null,
+         "is_superuser":false,
+         "username":"otheruser",
+         "first_name":"",
+         "last_name":"",
+         "email":"",
+         "is_staff":false,
+         "is_active":true,
+         "date_joined":"2024-06-24T16:43:55.754Z",
+         "groups":[
+
+         ],
+         "user_permissions":[
+
+         ]
+      }
+   },
   {
     "model": "wikiwikiweb.wikispace",
     "pk": 1,
@@ -23,6 +67,8 @@
       "content": "https://threehundredsongs.com/24-anna-begins-counting-crows",
       "created": "2024-06-10T07:27:54.721Z",
       "updated": "2024-06-16T21:26:20.272Z",
+      "created_by_id": 3,
+      "updated_by_id": 3,
       "edit_reason": "Created"
     }
   },
@@ -34,6 +80,8 @@
       "content": "## Songs:\r\n\r\n- ComplicatedSong",
       "created": "2024-06-16T10:51:29.935Z",
       "updated": "2024-06-23T19:28:13.322Z",
+      "created_by_id": 3,
+      "updated_by_id": 3,
       "edit_reason": "Created"
     }
   },
@@ -45,6 +93,8 @@
       "content": "- AfterTheDeluge\r\n- ...\r\n\r\n## Already Done\r\n\r\n\r\n- LateForTheSky - see  https://threehundredsongs.com/19-late-for-the-sky-jackson-browne",
       "created": "2024-06-08T14:16:55.849Z",
       "updated": "2024-06-16T21:26:20.272Z",
+      "created_by_id": 3,
+      "updated_by_id": 3,
       "edit_reason": "Add text"
     }
   },
@@ -56,6 +106,8 @@
       "content": "- RefugeOfTheRoads\r\n- RaisedOnRobbery\r\n- Probably have to do WoodstockSong at some point. She didn't even make it there!\r\n- ...\r\n\r\n# Test Heading\r\n\r\nMore text",
       "created": "2024-06-17T15:17:46.542Z",
       "updated": "2024-06-23T16:24:54.160Z",
+      "created_by_id": 4,
+      "updated_by_id": 4,
       "edit_reason": "Add note re Woodstock"
     }
   },
@@ -67,6 +119,8 @@
       "content": "Features JacoPastorius?",
       "created": "2024-06-17T15:18:08.592Z",
       "updated": "2024-06-17T16:11:25.327Z",
+      "created_by_id": 3,
+      "updated_by_id": 3,
       "edit_reason": "Edit by non-admin user"
     }
   },
@@ -78,6 +132,8 @@
       "content": "This should be a WikiName  \r\nThis should not be a 123WikiName  \r\nHow about WhyUsePHP  \r\nBut WhyUsePhp  \r\nYouTube: https://www.youtube.com/watch?v=DVPab4bTGqY",
       "created": "2024-06-24T13:51:32.759Z",
       "updated": "2024-06-24T14:47:09.479Z",
+      "created_by_id": 3,
+      "updated_by_id": 3,
       "edit_reason": "Adding YouTube example..."
     }
   },
@@ -89,7 +145,9 @@
       "content": "- BookIdeas\r\n- SongIdeas\r\n    - SongsToRewrite\r\n- PossibleEdits\r\n- LFOTMIdeas",
       "created": "2024-06-08T06:36:13.254Z",
       "updated": "2024-06-18T16:30:41.754Z",
-      "edit_reason": "Created"
+      "created_by_id": 3,
+      "updated_by_id": 3,
+     "edit_reason": "Created"
     }
   },
   {
@@ -100,6 +158,8 @@
       "content": "To see how the title looks",
       "created": "2024-06-24T13:59:38.446Z",
       "updated": "2024-06-24T13:59:38.446Z",
+      "created_by_id": 3,
+      "updated_by_id": 3,
       "edit_reason": "Created"
     }
   },
@@ -111,6 +171,8 @@
       "content": "A general place for dumping things.\r\n\r\n - TechStuff\r\n- TestingPage",
       "created": "2024-06-13T10:59:00.332Z",
       "updated": "2024-06-24T13:50:55.601Z",
+      "created_by_id": 3,
+      "updated_by_id": 3,
       "edit_reason": "Add a Django link"
     }
   }

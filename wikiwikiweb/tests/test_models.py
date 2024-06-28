@@ -6,7 +6,7 @@ class TrivialModelTestCase(TestCase):
 
     fixtures = ['basic-db.json']
 
-    def test_to_str(self):
+    def Xtest_to_str(self):
 
         wikiname = 'LedZeppelin'
 

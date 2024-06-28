@@ -112,10 +112,11 @@ class PageCreateView(generic.edit.CreateView):
 
 
     def form_valid(self, form):
-        """Add current space to new page"""
+        """Add current space and user to new page"""
 
-        # Maybe some checking my be needed here
         form.instance.space = self.space
+        form.instance.created_by = self.request.user
+        form.instance.updated_by = self.request.user
         return super(PageCreateView, self).form_valid(form)
 
 
@@ -129,8 +130,13 @@ class PageEditView(generic.edit.UpdateView):
     model = WikiPage
     context_object_name = 'mypage'
     template_name = 'wiki/wiki_page_edit.html'
-
     form_class = PageEditForm
+
+    def form_valid(self, form):
+        """Add current space and user to new page"""
+
+        form.instance.updated_by = self.request.user
+        return super(PageEditView, self).form_valid(form)
 
     def get_success_url(self):
         new_page_name = self.object.name
