@@ -6,7 +6,7 @@ from .models import *
 @admin.register(WikiPage)
 class WikiPageAdmin(admin.ModelAdmin):
 
-    list_display = ['name', 'space']
+    list_display = ['name', 'space', 'updated']
 
     fields = [
             'name',
