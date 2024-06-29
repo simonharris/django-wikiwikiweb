@@ -63,7 +63,7 @@ class TestBasicCalls(TestCase):
 
     # TODO: test invalid form data
 
-    def Xtest_create_form_post(self):
+    def test_create_form_post(self):
         self._populate_session()
 
         newpagename = 'MyNewPage' # nb. not in fixture db
@@ -76,7 +76,9 @@ class TestBasicCalls(TestCase):
         newpageurl = '/' + newpagename
 
         response = self.client.post(newpageurl, data=formdata)
-        self.assertRedirects(response, newpageurl + '?success=created')
+        self.assertRedirects(response, 
+                        newpageurl + '?success=created',
+                        fetch_redirect_response=False)
 
         newpage = WikiPage.objects.get(pk=newpagename)
 
