@@ -13,6 +13,8 @@ class WikiPageAdmin(admin.ModelAdmin):
             'space',
             'content',
             'edit_reason',
+            'created_by',
+            'updated_by',
     ]
 
     def get_readonly_fields(self, request, obj=None):
