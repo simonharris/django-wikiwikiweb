@@ -15,6 +15,7 @@ from wikiwikiweb.models import WikiPage
 class TestBasicCalls(TestCase):
     """General control flow through site"""
 
+    # TODO: can we move the files nearer?
     fixtures = ['basic-db.json']
 
     #
@@ -163,6 +164,13 @@ class TestBasicCalls(TestCase):
         response = self.client.get('/search?q=Avril+Lavigne')
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/space/select?next=/search?q=Avril+Lavigne')
+
+    # User page ---------------------------------------------------------------
+
+    def test_success_for_real_userpage(self):
+        response = self.client.get('/user:testuser')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'wiki/user.html')
 
     # Private methods ----------------------------------------------------------
 
