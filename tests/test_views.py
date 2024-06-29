@@ -50,8 +50,8 @@ class TestBasicCalls(TestCase):
     def test_require_login_for_create_not_logged_in(self):
         response = self.client.get('/ThisNoExist')
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, 
-                        '/accounts/login/?next=/ThisNoExist', # Seems fragile 
+        self.assertRedirects(response,
+                        '/accounts/login/?next=/ThisNoExist', # Seems fragile
                         fetch_redirect_response=False)
 
     def test_get_create_form_if_logged_in(self):
@@ -76,7 +76,7 @@ class TestBasicCalls(TestCase):
         newpageurl = '/' + newpagename
 
         response = self.client.post(newpageurl, data=formdata)
-        self.assertRedirects(response, 
+        self.assertRedirects(response,
                         newpageurl + '?success=created',
                         fetch_redirect_response=False)
 
@@ -84,7 +84,6 @@ class TestBasicCalls(TestCase):
 
         self.assertEqual(newpage.created_by, self._get_user(self._test_user))
         self.assertEqual(newpage.updated_by, self._get_user(self._test_user))
-
 
     # Edit page
 
@@ -94,7 +93,6 @@ class TestBasicCalls(TestCase):
         response = self.client.get('/AvrilLavigne/edit')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'wiki/wiki_page_edit.html')
-
 
     def test_edit_form_post(self):
         self._populate_session()
@@ -110,7 +108,7 @@ class TestBasicCalls(TestCase):
         editpageurl = viewpageurl + '/edit'
 
         response = self.client.post(editpageurl, data=formdata)
-        self.assertRedirects(response, 
+        self.assertRedirects(response,
                             viewpageurl + '?success=updated',
                             fetch_redirect_response=False)
 
@@ -122,11 +120,30 @@ class TestBasicCalls(TestCase):
         # ...but this has
         self.assertEqual(newpage.updated_by, self._get_user(self._test_user))
 
-
-
     # WikiSpace pages ---------------------------------------------------------
 
-    # TODO
+    def test_success_for_real_wikispace(self):
+        response = self.client.get('/space:ThreeHundredSongs')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'wiki/space.html')
+
+    def test_selectspace_form_post(self):
+
+        session = self.client.session
+        self.assertFalse(session.get(self._sess_key_space))
+
+        targetpage = '/search?q=Kylie'
+        selectpage = '/space/select'
+
+        formdata = {
+                    'space_choice': 1,
+                    'next': targetpage
+                }
+
+        response = self.client.post(selectpage, data=formdata)
+        self.assertRedirects(response,
+                        targetpage,
+                        fetch_redirect_response=False)
 
     # Search page -------------------------------------------------------------
 
@@ -160,4 +177,3 @@ class TestBasicCalls(TestCase):
 
     def _get_user(self, username):
         return User.objects.get(username=username)
-

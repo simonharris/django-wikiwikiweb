@@ -18,7 +18,7 @@ class TrivialModelTestCase(TestCase):
         wikiname = 'LedZeppelin'
 
         space = WikiSpace.objects.create(name=wikiname)
-        #self.assertEqual(space.__str__(), wikiname)
+        self.assertEqual(space.__str__(), wikiname)
 
         page = WikiPage.objects.create(name=wikiname, space=space, created_by=user, updated_by=user)
-        #self.assertEqual(page.__str__(), wikiname)
+        self.assertEqual(page.__str__(), wikiname)

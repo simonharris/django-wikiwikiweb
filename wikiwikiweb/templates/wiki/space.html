@@ -14,21 +14,17 @@ Space for {{ myspace.name|make_title }}
 
 {% block content %}
 
-
 <p class="lead">{{ myspace.description }}</p>
-
 
 <div class="row">
 
 <div class="col">
 
-
-
 {% if myspace.homepage %}
 
 <h4 class="text-nowrap">{{ myspace.homepage.name|make_title }}</h4>
 <p>{{ myspace.homepage.content  | markdownify | linkify | safe }}</p>
-<p>View <a href="{% url 'wiki:page_view' myspace.homepage.name %}">{{ myspace.homepage.name }}</a> &raquo;</p>
+<p>View <a href="{% url 'page_view' myspace.homepage.name %}">{{ myspace.homepage.name }}</a> &raquo;</p>
 
 {% else %}
 
@@ -38,16 +34,15 @@ Space for {{ myspace.name|make_title }}
 
 {% endif %}
 
-
-
 </div>
+
 <div class="col">
 
 <h4 class="text-nowrap">Pages in This Space</h4>
 
 <ul>
 {% for mypage in myspace.wikipage_set.all %}
-    <li><a href="{% url 'wiki:page_view' mypage.name %}">{{ mypage.name }}</a></li>
+    <li><a href="{% url 'page_view' mypage.name %}">{{ mypage.name }}</a></li>
 {% endfor %}
 </ul>
 
@@ -57,9 +52,6 @@ Space for {{ myspace.name|make_title }}
 {% endblock %}
 
 
-
 {% block footer %}
-
-<a href="{% url 'wiki:home' %}">Wiki Home</a>
-
+<a href="{% url 'home' %}">Wiki Home</a>
 {% endblock %}
