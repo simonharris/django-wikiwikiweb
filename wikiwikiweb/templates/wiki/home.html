@@ -13,6 +13,16 @@ Wiki Home
 <div class="row mt-4">
 
 <div class="col" text-nowrap>
+
+<h4>Wiki Spaces</h4>
+
+<ul>
+{% for space in all_spaces %}
+    <li><a href="{% url 'djwiki:space' space.name %}">{{ space.name|make_title }} </a></li>
+{% endfor %}
+</ul>
+
+
 <h4>Main Pages</h4>
 
 <ul>
@@ -22,16 +32,7 @@ Wiki Home
 {% endif %}
 {% endfor %}
 </ul>
-<!-- /div>
 
-<div class="col text-nowrap" -->
-<h4>Wiki Spaces</h4>
-
-<ul>
-{% for space in all_spaces %}
-    <li><a href="{% url 'djwiki:space' space.name %}">{{ space.name|make_title }} </a></li>
-{% endfor %}
-</ul>
 </div>
 
 <!-- /div>

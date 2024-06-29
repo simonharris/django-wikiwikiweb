@@ -1,6 +1,7 @@
+<!DOCTYPE html>
+
 {% load wiki_extras %}
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -50,13 +51,17 @@ Space: {{ sess_space_key }}
         </li>
 
         {% if sess_space_key %}
-        <li class="nav-item">
+        <!-- li class="nav-item">
             <a class="nav-link" href="{% url 'djwiki:space' sess_space_key %}">{{ sess_space_key|make_title }} </a>
-        </li>
+        </li -->
         {% endif %}
         <li class="nav-item dropdown">
           <a class="btn dropdown-toggle btn btn-secondary ms-2" href="#" role="button" data-bs-toggle="dropdown">
+            {% if sess_space_key %}
+            {{ sess_space_key }}
+            {% else %}
             Select Space
+            {% endif %}
           </a>
           <ul class="dropdown-menu">
             {% for space in all_spaces %}
@@ -71,8 +76,8 @@ Space: {{ sess_space_key }}
             Hi {{ user.first_name }}!
           </a>
           <ul class="dropdown-menu">
-            <!-- li><a class="dropdown-item" href="{% url 'djwiki:mywiki' %}" class="navbar-brand">My PyWIKI<sup>BETA</sup></a></li -->
-            <!-- li><hr class="dropdown-divider"></li  -->
+            <li><a class="dropdown-item" href="{% url 'djwiki:mywiki' %}" class="navbar-brand">My DjWIKI<sup>alpha</sup></a></li>
+            <li><hr class="dropdown-divider"></li>
             <li>
               <form action="{# % url 'djwiki:logout' % #}" method="post">
                 {% csrf_token %}
