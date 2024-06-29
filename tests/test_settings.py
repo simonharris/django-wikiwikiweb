@@ -40,6 +40,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'wikiwikiweb.context_processors.site_wide_context',
             ],
+            'debug': True,
         },
     },
 ]
