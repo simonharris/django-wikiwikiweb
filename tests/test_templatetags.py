@@ -3,7 +3,7 @@ from unittest import TestCase
 
 # from django.test import TestCase
 
-from ..templatetags import wiki_extras
+from wikiwikiweb.templatetags import wiki_extras
 
 
 class LinkifyTestCase(TestCase):
