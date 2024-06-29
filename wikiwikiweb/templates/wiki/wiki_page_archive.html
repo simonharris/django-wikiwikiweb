@@ -8,7 +8,7 @@
 
 
 {% block mainheading %}
-<a href="{% url 'wiki:page_view' mypage.name %}">{{ mypage.name|make_title }}</a> v. {{ mypage.history_id }} @ {{ mypage.history_date|date:"M d, Y H:m" }}
+<a href="{% url 'djwiki:wiki:page_view' mypage.name %}">{{ mypage.name|make_title }}</a> v. {{ mypage.history_id }} @ {{ mypage.history_date|date:"M d, Y H:m" }}
 {% endblock %}
 
 
@@ -21,10 +21,10 @@
 {% endblock %}
 
 {% block footer %}
-<!-- <a href="{% url 'wiki:page_edit' mypage.name %}">Edit</a>
+<!-- <a href="{% url 'djwiki:wiki:page_edit' mypage.name %}">Edit</a>
 | -->
-<a href="{% url 'wiki:home' %}">Wiki Home</a>
+<a href="{% url 'djwiki:wiki:home' %}">Wiki Home</a>
 |
-<a href="{% url 'wiki:space' mypage.space.name %}">Space:{{ mypage.space.name }}</a>
+<a href="{% url 'djwiki:wiki:space' mypage.space.name %}">Space:{{ mypage.space.name }}</a>
 {% endblock %}
 

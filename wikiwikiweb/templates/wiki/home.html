@@ -18,7 +18,7 @@ Wiki Home
 <ul>
 {% for space in all_spaces %}
 {% if space.homepage %}
-    <li><a href="{% url 'page_view' space.homepage.name %}">{{ space.homepage.name }}</a></li>
+    <li><a href="{% url 'djwiki:page_view' space.homepage.name %}">{{ space.homepage.name }}</a></li>
 {% endif %}
 {% endfor %}
 </ul>
@@ -29,7 +29,7 @@ Wiki Home
 
 <ul>
 {% for space in all_spaces %}
-    <li><a href="{% url 'space' space.name %}">{{ space.name|make_title }} </a></li>
+    <li><a href="{% url 'djwiki:space' space.name %}">{{ space.name|make_title }} </a></li>
 {% endfor %}
 </ul>
 </div>
@@ -43,7 +43,7 @@ Wiki Home
 
 <ul>
 {% for page in pages_updated %}
-    <li><a href="{%  url 'page_view' page.name %}">{{ page.name }}</a></li>
+    <li><a href="{%  url 'djwiki:page_view' page.name %}">{{ page.name }}</a></li>
 {% endfor %}
 </ul>
 
@@ -54,7 +54,7 @@ Wiki Home
 
 <ul>
 {% for page in pages_created %}
-    <li><a href="{%  url 'page_view' page.name %}">{{ page.name }}</a></li>
+    <li><a href="{%  url 'djwiki:page_view' page.name %}">{{ page.name }}</a></li>
 {% endfor %}
 </ul>
 </div>

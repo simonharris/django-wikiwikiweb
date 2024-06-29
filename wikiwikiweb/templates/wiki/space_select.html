@@ -17,7 +17,7 @@ Select WikiSpace
 
 {% bootstrap_messages %}
 
-<form action="{% url 'space_select' %}" method="post">
+<form action="{% url 'djwiki:space_select' %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type="submit" content="Go" %}
@@ -28,5 +28,5 @@ Select WikiSpace
 
 
 {% block footer %}
-<a href="{% url 'home' %}">Wiki Home</a>
+<a href="{% url 'djwiki:home' %}">Wiki Home</a>
 {% endblock %}

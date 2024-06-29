@@ -36,7 +36,7 @@
 {{ mypage.content | markdownify | linkify | safe }}
 </div>
 
-<p class="mt-2"><a class="btn btn-secondary" style="color: white" href="{% url 'page_edit' mypage.name %}">Edit Page</a></p>
+<p class="mt-2"><a class="btn btn-secondary" style="color: white" href="{% url 'djwiki:page_edit' mypage.name %}">Edit Page</a></p>
 
 <hr>
 
@@ -46,7 +46,7 @@
 
 <ul>
 {% for hist in mypage.history.all %}
-    <li><a href="{% url 'page_archive' mypage.name hist.history_id %}">{{ hist.history_date|date:"M d, Y H:m"  }}</a> - {{ hist.edit_reason }}</li>
+    <li><a href="{% url 'djwiki:page_archive' mypage.name hist.history_id %}">{{ hist.history_date|date:"M d, Y H:m"  }}</a> - {{ hist.edit_reason }}</li>
 {% endfor %}
 </ul -->
 
@@ -70,9 +70,9 @@
         <!-- ul>
         {% for hist in mypage.history.all %}
             <li>
-              <a href="{% url 'page_archive' mypage.name hist.history_id %}">{{ hist.history_date|date:"M d, Y H:i"  }}</a> -
+              <a href="{% url 'djwiki:page_archive' mypage.name hist.history_id %}">{{ hist.history_date|date:"M d, Y H:i"  }}</a> -
               {{ hist.edit_reason }} -
-              <a href="{% url 'user' hist.history_user.username %}">{{ hist.history_user }}</a>
+              <a href="{% url 'djwiki:user' hist.history_user.username %}">{{ hist.history_user }}</a>
             </li>
         {% endfor %}
         </ul -->
@@ -89,10 +89,10 @@
   <tbody>
 {% for hist in mypage.history.all %}
             <tr>
-              <!-- td style="width: 100px" class="text-nowrap"><a href="{% url 'page_archive' mypage.name hist.history_id %}">{{ hist.history_date|date:"M d, Y H:i"  }}</a></td -->
-              <td style="width: 100px" class="text-nowrap"><a href="{% url 'page_archive' mypage.name hist.history_id %}">{{ hist.history_date|date:"y-m-d H:i"  }}</a></td>
+              <!-- td style="width: 100px" class="text-nowrap"><a href="{% url 'djwiki:page_archive' mypage.name hist.history_id %}">{{ hist.history_date|date:"M d, Y H:i"  }}</a></td -->
+              <td style="width: 100px" class="text-nowrap"><a href="{% url 'djwiki:page_archive' mypage.name hist.history_id %}">{{ hist.history_date|date:"y-m-d H:i"  }}</a></td>
               <td>{{ hist.edit_reason }}</td>
-              <td class="text-end"><a href="{% url 'user' hist.history_user.username %}">{{ hist.history_user }}</a></td>
+              <td class="text-end"><a href="{% url 'djwiki:user' hist.history_user.username %}">{{ hist.history_user }}</a></td>
             </tr>
         {% endfor %}
   </tbody>
@@ -130,9 +130,9 @@
 
 
 {% block footer %}
-<!-- <a href="{% url 'page_edit' mypage.name %}">Edit</a>
+<!-- <a href="{% url 'djwiki:page_edit' mypage.name %}">Edit</a>
 | -->
-<a href="{% url 'home' %}">Wiki Home</a>
+<a href="{% url 'djwiki:home' %}">Wiki Home</a>
 |
-<a href="{% url 'space' mypage.space.name %}">Space:{{ mypage.space.name }}</a>
+<a href="{% url 'djwiki:space' mypage.space.name %}">Space:{{ mypage.space.name }}</a>
 {% endblock %}

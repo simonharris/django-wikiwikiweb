@@ -35,7 +35,7 @@ def _make_link(wikiname):
 
     # TODO: proper string formatting
 
-    url = reverse('page_view', kwargs={'pk': wikiname})
+    url = reverse('djwiki:page_view', kwargs={'pk': wikiname})
 
     link = '<span class="wikilink"><a href="' + url + '"'
 

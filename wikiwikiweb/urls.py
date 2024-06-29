@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-app_name = 'wiki'
+app_name = 'djwiki'
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),

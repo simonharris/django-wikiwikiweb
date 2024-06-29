@@ -1,4 +1,5 @@
 SECRET_KEY = 'fake-key'
+
 INSTALLED_APPS = [
     'tests',
     'wikiwikiweb',
@@ -11,20 +12,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
 ]
+
 DATABASES={
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
     }
 }
-ROOT_URLCONF='wikiwikiweb.urls'
+
+ROOT_URLCONF='tests.urls'
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
-
-# May be overkill...
 
 TEMPLATES = [
     {

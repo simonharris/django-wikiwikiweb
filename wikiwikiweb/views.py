@@ -17,7 +17,7 @@ def wikispace_required(view_func):
 
     def wrapper(request, *args, **kwargs):
         if not request.session.get('sess_space_key'):
-            intermediate = (reverse('space_select')
+            intermediate = (reverse('djwiki:space_select')
                             + '?next='
                             + request.get_full_path())
             return redirect(intermediate)
@@ -122,7 +122,7 @@ class PageCreateView(generic.edit.CreateView):
 
     def get_success_url(self):
         new_page_name = self.object.name
-        return reverse('page_view', kwargs={'pk': new_page_name}) + '?success=created'
+        return reverse('djwiki:page_view', kwargs={'pk': new_page_name}) + '?success=created'
 
 
 @method_decorator(login_required, name='dispatch')
@@ -140,7 +140,7 @@ class PageEditView(generic.edit.UpdateView):
 
     def get_success_url(self):
         new_page_name = self.object.name
-        return reverse('page_view', kwargs={'pk': new_page_name}) + '?success=updated'
+        return reverse('djwiki:page_view', kwargs={'pk': new_page_name}) + '?success=updated'
 
 
 @method_decorator(wikispace_required, name='dispatch')
