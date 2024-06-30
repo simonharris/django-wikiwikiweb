@@ -121,6 +121,17 @@ class TestBasicCalls(TestCase):
         # ...but this has
         self.assertEqual(newpage.updated_by, self._get_user(self._test_user))
 
+    # Archive pages -----------------------------------------------------------
+
+    def test_success_for_real_archivepage(self):
+        """Checks for #22"""
+
+        response = self.client.get('/JacksonBrowne/86')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'wiki/wiki_page_archive.html')
+
+    # TODO: #11
+
     # WikiSpace pages ---------------------------------------------------------
 
     def test_success_for_real_wikispace(self):
