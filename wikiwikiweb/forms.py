@@ -13,7 +13,7 @@ class PageCreateForm(ModelForm):
 
     class Meta:
         model = WikiPage
-        fields = ['name', 'content', 'edit_reason']
+        fields = ['content', 'edit_reason']
 
 
 class PageEditForm(ModelForm):

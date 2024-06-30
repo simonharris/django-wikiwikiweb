@@ -12,7 +12,7 @@ from .models import *
 
 ITEMS_PER_PAGE = 10
 
-
+# TODO: check it actually exists. See #25
 def wikispace_required(view_func):
 
     def wrapper(request, *args, **kwargs):
@@ -88,38 +88,40 @@ class PageCreateView(generic.edit.CreateView):
 
     form_class = PageCreateForm
 
-    # TODO: this seems superfluous. Used in one place?
     def setup(self, request, *args, **kwargs):
         """Initialize attributes shared by all view methods"""
 
+        self._new_page_name = kwargs['pk']
         space_key = request.session.get('sess_space_key')
 
+        # TODO: Remove the try/catch:
+        # - only here because the Space doesn't get found in >=1 test case (exceot it does!)
+        # - should be totally redundant after #25
         try:
             self.space = WikiSpace.objects.get(name=space_key)
         except:
-            pass # TODO. But so far only happens if arrive at non-existent page, but with no Space in session
+            pass
 
         return super(PageCreateView, self).setup(request, *args, **kwargs)
 
-
-    # TODO: is this even necessary? Should always be in the URL, not the form
-    # - and you don't want them to change it, bypassing existence checks. See #18
+    # nb. should this actually be get_context_data?
     def get(self, request, *args, **kwargs):
 
         defaults = {
-            'name': self.kwargs['pk'],
+            # 'name': self.kwargs['pk'],
         }
 
         form = self.form_class(initial=defaults)
         context = {
-            'form': form
+            'form': form,
+            'new_page_name': self._new_page_name
         }
         return render(request, self.template_name, context)
-
 
     def form_valid(self, form):
         """Add current space and user to new page"""
 
+        form.instance.name = self._new_page_name
         form.instance.space = self.space
         form.instance.created_by = self.request.user
         form.instance.updated_by = self.request.user

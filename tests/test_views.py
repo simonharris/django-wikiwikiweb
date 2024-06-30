@@ -70,7 +70,7 @@ class TestBasicCalls(TestCase):
         newpagename = 'MyNewPage' # nb. not in fixture db
 
         # nb. 'name' will soon be retired, see #18
-        formdata = {'name': newpagename,
+        formdata = {'name': 'This name is a red herring',
                     'content': 'Some page content',
                     'edit_reason': 'Created1'}
 
@@ -100,10 +100,10 @@ class TestBasicCalls(TestCase):
 
         editpagename = 'JoniMitchell' # nb. is in fixture db; created by user 4/otheruser
 
-        # nb. 'name' will soon be retired, see #18
-        formdata = {'name': editpagename,
+        formdata = {
                     'content': 'Some edited page content',
-                    'edit_reason': 'Edited1'}
+                    'edit_reason': 'Edited1'
+                    }
 
         viewpageurl = '/' + editpagename
         editpageurl = viewpageurl + '/edit'
