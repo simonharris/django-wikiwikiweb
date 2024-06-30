@@ -34,6 +34,11 @@ class HomeView(generic.TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['pages_created'] = WikiPage.objects.order_by('-created')[:ITEMS_PER_PAGE]
         context['pages_updated'] = WikiPage.objects.order_by('-updated')[:ITEMS_PER_PAGE]
+
+        # Display success dialogue. eg. logged out
+        status_key = self.request.GET.get('success')
+        context['status_key'] = status_key
+
         return context
 
     def get(self, request, *args, **kwargs):
