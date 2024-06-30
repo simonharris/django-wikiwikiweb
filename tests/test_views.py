@@ -130,7 +130,12 @@ class TestBasicCalls(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'wiki/wiki_page_archive.html')
 
-    # TODO: #11
+    def test_for_mismatched_revision_id(self):
+        """Checks for #11"""
+
+        # 86 would be JacksonBrowne, not AvriLavigne
+        response = self.client.get('/AvriLavigne/86')
+        self.assertEqual(response.status_code, 404)
 
     # WikiSpace pages ---------------------------------------------------------
 

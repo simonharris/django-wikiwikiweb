@@ -73,6 +73,12 @@ class PageArchiveView(generic.DetailView):
     context_object_name = 'mypage'
     template_name = 'wiki/wiki_page_archive.html'
 
+    def get_queryset(self):
+        search_wikiname = self.kwargs['page_name']
+        # Nb. the pk has already magically been applied in a DetailView
+        return HistoricalWikiPage.objects.filter(name=search_wikiname)
+
+
 @method_decorator(login_required, name='dispatch')
 @method_decorator(wikispace_required, name='dispatch')
 class PageCreateView(generic.edit.CreateView):
