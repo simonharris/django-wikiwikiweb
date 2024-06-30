@@ -8,13 +8,17 @@
 
 
 {% block mainheading %}
-Space for {{ myspace.name|make_title }}
+Space for {{ myspace.name }}
 {% endblock %}
 
 
 {% block content %}
 
+<div class="row">
+
 <p class="lead">{{ myspace.description }}</p>
+
+</div>
 
 <div class="row">
 
@@ -22,9 +26,9 @@ Space for {{ myspace.name|make_title }}
 
 {% if myspace.homepage %}
 
-<h4 class="text-nowrap">{{ myspace.homepage.name|make_title }}</h4>
-<p>{{ myspace.homepage.content  | markdownify | linkify | safe }}</p>
-<p>View <a href="{% url 'djwiki:page_view' myspace.homepage.name %}">{{ myspace.homepage.name }}</a> &raquo;</p>
+<!-- h4 class="text-nowrap">{{ myspace.homepage.name|make_title }}</h4 -->{{ myspace.homepage.content  | markdownify | linkify | safe }}
+
+<p><a class="btn btn-secondary" style="color: white" href="{% url 'djwiki:page_view' myspace.homepage.name %}">{{ myspace.homepage.name }}</a></p>
 
 {% else %}
 
