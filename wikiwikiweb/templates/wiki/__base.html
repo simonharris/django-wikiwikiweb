@@ -76,7 +76,7 @@ Space: {{ sess_space_key }}
             Hi {{ user.first_name }}!
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'djwiki:mywiki' %}" class="navbar-brand">My DjWIKI<sup>alpha</sup></a></li>
+            <li><a class="dropdown-item" href="{% url 'djwiki:user' user.username %}" class="navbar-brand">My Profile<!-- sup>alpha</sup --></a></li>
             <li><hr class="dropdown-divider"></li>
             <li>
               <form action="{# % url 'djwiki:logout' % #}" method="post">

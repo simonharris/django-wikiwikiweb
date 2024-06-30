@@ -27,8 +27,8 @@ class WikiPage(models.Model):
     content = models.TextField('Page Content', blank=False, null=False)
     created = models.DateTimeField(blank=False, null=False, auto_now_add=True)
     updated = models.DateTimeField(blank=False, null=False, auto_now=True)
-    created_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='creator')
-    updated_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='updater')
+    created_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='pagescreated')
+    updated_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='pagesupdated')
 
     #updated = models.DateTimeField(blank=False, null=False, auto_now=True)
     edit_reason = models.CharField('Reason for Edit', max_length=256, default='Created')

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import Http404
@@ -221,5 +222,22 @@ class MyView(generic.TemplateView):
     template_name = 'wiki/mywiki.html'
 
 
-class UserView(generic.TemplateView):
+class UserProfileView(generic.DetailView):
+
+    model = User
+    context_object_name = 'myuser'
     template_name = 'wiki/user.html'
+
+    def get_object(self):
+        return User.objects.get(username=self.kwargs['profileusername'])
+
+    def get_context_data(self, **kwargs):
+
+        context = super(UserProfileView, self).get_context_data(**kwargs)
+        context['pages_created'] = self.object.pagescreated.all().order_by('-created') #[:ITEMS_PER_PAGE]
+        context['edits_made'] = WikiPage.history.filter(updated_by=self.object).order_by('-updated')
+
+        #context['debugme'] = WikiPage.history.filter(updated_by=self.object).count
+        #context['debugme'] = self.object
+
+        return context
