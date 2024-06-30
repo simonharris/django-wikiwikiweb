@@ -27,7 +27,7 @@ Profile for {{ myuser.username }}
 
 <div class="row mt-4">
 
-<div class="col-3" text-nowrap>
+<div class="col text-nowrap">
 
 <h4>User Info</h4>
 
@@ -39,12 +39,12 @@ Profile for {{ myuser.username }}
     <dt>Is admin?</dt>
     <dd>{{ myuser.is_superuser|yesno|title }}</dd>
     <dt>Total contributions:</dt>
-    <dd>{{ edits_made.count }} ({{ pages_created.count }} new)</dd>
+    <dd>{{ edits_made.count }} ({{ pages_created.count }} new pages)</dd>
 </dl>
 
 </div>
 
-<div class="col-5">
+<div class="col text-nowrap">
 <h4>Created by {{ myuser }}</h4>
 
 <ul>
@@ -58,14 +58,14 @@ Profile for {{ myuser.username }}
 </ul>
 </div>
 
-<div class="col-4 text-nowrap">
+<div class="col text-nowrap">
 
 <h4>Edits by {{ myuser }}</h4>
 
 <ul>
 {% if edits_made %}
 {% for page in edits_made %}
-    <li><a href="{%  url 'djwiki:page_archive' page.name page.history_id %}" title="{{ page.edit_reason }}">{{ page.name }}</a> @ {{ page.history_id }} - {{ page.updated }}</li>
+    <li><a href="{%  url 'djwiki:page_archive' page.name page.history_id %}" title="{{ page.edit_reason }} - {{ page.updated }}">{{ page.name }}</a> @ {{ page.history_id }}</li>
 {% endfor %}
 {% else %}
     <li>None yet...</li>
