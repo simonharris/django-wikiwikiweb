@@ -4,7 +4,7 @@ Installation
 
 .. note::
 
-   This project is under active development. It is not yet available under ``pip``.
+   This project is under active development. It is not yet available under ``pip``. Thble on e source code repository is `available on GitHub <https://github.com/simonharris/django-wikiwikiweb>`_.
 
 
 The preferred way to install ``django-wikiwikiweb`` will be ``pip``::
