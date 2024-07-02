@@ -18,6 +18,10 @@ Add the app to INSTALLED_APPS in your ``settings.py``:
 
    ``'django_wikiwikiweb',``
 
+..or is it?
+
+    ``'wikiwikiweb',``
+
 Further settings will be documented here in due course.
 
 
