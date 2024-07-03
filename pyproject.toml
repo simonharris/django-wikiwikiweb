@@ -1,10 +1,12 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+build-backend = "hatchling.build"
+requires = [
+  "hatchling",
+]
 
 [project]
 name = "django-wikiwikiweb"
-version = "0.0.1a2:q"
+version = "0.0.1a"
 authors = [
   { name="Simon Harding", email="djwiki@pointbeing.net" },
 ]
@@ -20,7 +22,7 @@ dependencies = [
   "django>=5.0.6",
   "django-bootstrap5>=24.2",
   "django-markdownify>=0.9.5",
-  "django-simple-history",
+  "django-simple-history>=3.7.0",
 ]
 
 [project.urls]
@@ -28,3 +30,6 @@ Documentation = "https://django-wikiwikiweb.readthedocs.io/"
 Homepage = "https://github.com/simonharris/django-wikiwikiweb"
 Issues = "https://github.com/simonharris/django-wikiwikiweb/issues"
 Source = "https://github.com/simonharris/django-wikiwikiweb"
+
+[tool.hatch.build.targets.wheel]
+packages = ["wikiwikiweb"]
