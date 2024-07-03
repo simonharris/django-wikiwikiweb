@@ -13,4 +13,7 @@ Contents
 
 .. toctree::
 
-   installation
+    installation
+    quickstart for admins
+    dev guide eg templatetags
+    end user guide
