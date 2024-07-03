@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-wikiwikiweb"
-version = "0.0.1a1"
+version = "0.0.1a2:q"
 authors = [
-  { name="Simon Hardng", email="djwiki@pointbeing.net" },
+  { name="Simon Harding", email="djwiki@pointbeing.net" },
 ]
 description = "A Django WikiWikiWeb app"
 readme = "README.md"
@@ -20,7 +20,7 @@ dependencies = [
   "django>=5.0.6",
   "django-bootstrap5>=24.2",
   "django-markdownify>=0.9.5",
-  "django-simple-history>=3.7.0",
+  "django-simple-history",
 ]
 
 [project.urls]
