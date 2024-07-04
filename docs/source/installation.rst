@@ -9,7 +9,7 @@ Installation
 Download
 ~~~~~~~~
 
-The preferred way to source ``django-wikiwikiweb`` is via ``pip``::
+The preferred way to get hold of ``django-wikiwikiweb`` is via ``pip``::
 
     $ pip install django-wikiwikiweb
 
@@ -17,14 +17,16 @@ This may be a good time to add ``django-wikiwikiweb`` to your project's ``requir
 
 The ``django-wikiwikiweb`` source code is also available via `the project's GitHub repository <https://github.com/simonharris/django-wikiwikiweb>`_.
 
-Initial configuration
+Initial Configuration
 ~~~~~~~~~~~~~~~~~~~~~
 
 There are a few changes to make to your project's configuration files.
 
 
-In settings.py
-^^^^^^^^^^^^^^
+App Settings
+^^^^^^^^^^^^
+
+In your project's ``settings.py``:
 
 1) add the app and its dependencies to ``INSTALLED_APPS``::
 
@@ -60,10 +62,12 @@ In settings.py
     ]
 
 
-In urls.py
+App URLs
 ^^^^^^^^^^
 
-4) Include the ``django-wikiwikiweb`` URL routes file in your ``urlpatterns``::
+In your projects root ``urls.py``:
+
+4) include the ``django-wikiwikiweb`` URL routes file in your ``urlpatterns``::
 
     urlpatterns = [
         # To run under a path:
@@ -78,10 +82,10 @@ In urls.py
 
 
 
-Database migrations
+Database Migrations
 ^^^^^^^^^^^^^^^^^^^
 
-Finally, apply the database migrations to create the tables needed by ``django-wikiwikiweb``:
+5) finally, apply the database migrations to create the tables needed by ``django-wikiwikiweb``:
 
 
 .. code-block:: console
@@ -89,17 +93,23 @@ Finally, apply the database migrations to create the tables needed by ``django-w
     $ python manage.py migrate wikiwikiweb
 
 
-You should be good to go. Upon starting the Django server, you should now have an empty wiki under ``/wiki/``, or wherever you chose for it to live. A WikiWikiWeb section should now be available under the Django admin site.
+You should now be good to go. Upon starting the Django server, you should now have an empty Wiki under ``/wiki/``, or wherever you chose for it to live. A WikiWikiWeb section should now be available under the Django admin site. Visit the :ref:`label-admin-quickstart` guide for Wiki admins to get started.
 
-Therefore, there will soon be a link to a Quickstart guide for Wiki admins here.
 
-Optional settings
+Optional Settings
 ^^^^^^^^^^^^^^^^^
 
 
 There are a small number of optional settings to consider.
 
 These are to follow...
+
+
+
+
+
+
+
 
 
 
