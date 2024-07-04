@@ -100,10 +100,12 @@ Optional Settings
 ^^^^^^^^^^^^^^^^^
 
 
-There are a small number of optional settings to consider.
+There are a small number of optional settings to consider:
 
-These are to follow...
+i) ``django-wikiwikiweb`` integrates with the Django auth system (i.e. user management and authentication) to some extent, in that it uses login and logout links which reference the auth URLs. Thus, if you don't already, you may wish to add definitions for the constants ``LOGIN_REDIRECT_URL`` and ``LOGOUT_REDIRECT_URL`` in ``settings.py``.
 
+
+ii) ``django-wikiwikiweb`` uses ``django-markdownify`` to format pages (see :ref:`label-user-markdown`). You may wish to allow more (or fewer) HTML tags to be generated than ``django-markdownify`` allows by default. This is done via the ``MARKDOWNIFY`` constant in ``settings.py``. The settings allowed by ``django-markdownify`` are very well documented on the project's own documentation site: https://django-markdownify.readthedocs.io/en/latest/settings.html
 
 
 

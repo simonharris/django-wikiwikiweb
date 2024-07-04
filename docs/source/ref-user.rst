@@ -1,5 +1,5 @@
-User Reference
-==============
+User Guide
+==========
 
 
 .. _label-user-markdown:
