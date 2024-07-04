@@ -1,5 +1,5 @@
-Admin Reference
-===============
+Admin Guide
+===========
 
 
 .. _label-admin-quickstart:

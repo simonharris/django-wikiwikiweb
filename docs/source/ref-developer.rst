@@ -1,5 +1,5 @@
 Developer Reference
 ===================
 
-To follow. eg templatetags, filters, ...
+To follow. eg templatetags, filters, theming, ...
 
