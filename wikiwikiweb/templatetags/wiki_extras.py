@@ -10,7 +10,7 @@ register = template.Library()
 
 # I've tried to enforce https://wiki.c2.com/?WikiCase as far as sensible
 # There will be omissions/exceptions
-FMT_WIKINAME = r'(?<!=)\b[A-Z]+[a-zA-Z0-9]+[A-Z][a-zA-Z0-9]+\b'
+FMT_WIKINAME = r'(?<![=/])\b[A-Z]+[a-zA-Z0-9]+[A-Z][a-zA-Z0-9]+\b'
 
 
 @register.filter

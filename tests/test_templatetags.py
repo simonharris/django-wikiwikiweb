@@ -57,6 +57,19 @@ class LinkifyTestCase(TestCase):
                 'DVPab4bTGqY')
             )
 
+    def test_facebook_urls_unmolested(self):
+        """See issue #34"""
+
+        facebook_url ='https://www.facebook.com/TheBullincolchester'
+
+        self.assertFalse(re.search(self.tomatch, facebook_url))
+        self.assertEqual(wiki_extras.linkify(facebook_url), facebook_url)
+
+        self.assertFalse(self._is_linked(
+                wiki_extras.linkify('https://www.youtube.com/watch?v=DVPab4bTGqY'),
+                'DVPab4bTGqY')
+            )
+
 
     def _is_linked(self, html, wikiname):
         """Don't get too specific about the HTML - that could get fragile"""
