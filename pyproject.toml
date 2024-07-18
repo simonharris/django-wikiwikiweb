@@ -6,7 +6,7 @@ requires = [
 
 [project]
 name = "django-wikiwikiweb"
-version = "0.0.1a"
+version = "0.0.1b"
 authors = [
   { name="Simon Harding", email="djwiki@pointbeing.net" },
 ]
