@@ -7,6 +7,11 @@ from .models import *
 class WikiPageAdmin(admin.ModelAdmin):
 
     list_display = ['name', 'space', 'updated']
+    ordering = ['-updated']
+
+    list_filter = ['space']
+    show_facets = admin.ShowFacets.ALWAYS
+    search_fields = ['name'] #, 'desc_hline', 'performance__artist__title']
 
     fields = [
             'name',
