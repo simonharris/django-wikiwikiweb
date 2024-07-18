@@ -12,3 +12,6 @@ clean:
 build: clean
 	python -m build
 
+publish: build
+	twine upload dist/*
+
