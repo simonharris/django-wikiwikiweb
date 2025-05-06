@@ -65,7 +65,7 @@ In your project's ``settings.py``:
 App URLs
 ^^^^^^^^^^
 
-In your projects root ``urls.py``:
+In your project's root ``urls.py``:
 
 4) include the ``django-wikiwikiweb`` URL routes file in your ``urlpatterns``::
 
